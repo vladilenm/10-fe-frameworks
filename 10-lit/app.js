@@ -25,9 +25,13 @@ export class UsersFilter extends LitElement {
     if (!this.users) return html`Loading...`
     return html`
       <input type="text" @input=${(e) => (this.input = e.target.value)} />
-      ${this.users
-        .filter((u) => u.name.toLowerCase().includes(this.input.toLowerCase()))
-        .map((u) => html`<li>${u.name}</li>`)}
+      <ul>
+        ${this.users
+          .filter((u) =>
+            u.name.toLowerCase().includes(this.input.toLowerCase())
+          )
+          .map((u) => html`<li>${u.name}</li>`)}
+      </ul>
     `
   }
 }
