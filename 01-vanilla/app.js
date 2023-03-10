@@ -1,24 +1,19 @@
 const input = document.querySelector('input')
 const ul = document.querySelector('ul')
-let DATA
+let ALL_USERS
 
 async function start() {
   const res = await fetch('https://jsonplaceholder.typicode.com/users')
-  const data = await res.json()
-  DATA = data.concat()
-  render(data)
+  ALL_USERS = await res.json()
+  render(ALL_USERS)
 }
 
 input.addEventListener('input', () => {
-  if (input.value.length) {
-    render(
-      DATA.filter((i) =>
-        i.name.toLowerCase().includes(input.value.toLowerCase())
-      )
+  render(
+    ALL_USERS.filter((i) =>
+      i.name.toLowerCase().includes(input.value.toLowerCase())
     )
-  } else {
-    render(DATA)
-  }
+  )
 })
 
 function render(data) {

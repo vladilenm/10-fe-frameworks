@@ -9,9 +9,8 @@ function App() {
   useEffect(() => {
     async function fetchUsers() {
       const res = await fetch('https://jsonplaceholder.typicode.com/users')
-      const data = await res.json()
-      allUsers.current = data
-      setUsers(data)
+      allUsers.current = await res.json()
+      setUsers(allUsers.current)
     }
     fetchUsers()
   }, [])
@@ -23,6 +22,7 @@ function App() {
       )
     )
   }, [input])
+
   return (
     <>
       <input value={input} onChange={(e) => setInput(e.target.value)} />
